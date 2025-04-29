@@ -1,8 +1,10 @@
 #!/bin/bash
+sudo apt install ifupdown
+sudo apt install net-tools
 
 cat << EOF > /etc/network/interfaces.d/can0
 auto can0
 iface can0 can static
  bitrate 1000000
- up ifconfig \$IFACE txqueuelen 1024
+up ip link set can0 txqueuelen 1024
 EOF
